@@ -1,0 +1,209 @@
+Fantom/ghost message (no consistency in UI) in facebook led to creation of react 
+
+states are like variables in JS
+UI is managed by DOM
+
+Before react there was no sync between states and UI
+
+component reusability was also available in php, react made it easier to implement
+
+props in react are like JS objects
+
+react is used to make SPA(single page application) 
+instead of page reload page manipulation happens
+
+Add on's to React : 
+-react doesn't have router - so we use use a package React-Router-DOM
+-React didn't had state management before by default
+-so new JS standalone librabries were introduced like Redux,Redux Toolkit,zustand,context API
+-React is function based, earlier it was class based
+-Backend as a Service(BaaS) - appwrite,firebase,superbase : we can make e-commerce,social media apps by these
+
+freeapi by hitesh choudhary
+
+React is not a complete solution in most case as it has no SEO by default,browser rendering of HTML,CSS,JS makes it little slow,no routing by default
+Hence,React based frameworks Next JS(full stack),Gatsby,Remix came
+
+ways to create react app
+1.npx create-react-app 01basicreact
+This method is little bulky
+
+web vitals in package.json track the performance of the react app
+linting give red lines for bad coding practices
+
+cd 01basicreact   :to enter into directory
+
+dir or ls to see directory
+
+npm start : Starts the development server.
+
+npm run build : Bundles the app into static files for production.
+
+npm test : Starts the test runner.
+
+npm run eject : Removes this tool and copies build dependencies, configuration files and scripts into the app directory. If you do this, you can’t go back!
+
+delete useless files like setupTests.js,reportWebVitals(track performance),app.test
+
+2.vite
+vite is a bundeler,solves the problem of slow feedback loop
+node modules are not present in npm create vite@latest so npm install
+takes less time as less dependencies
+
+Node modules contain all the dependencies
+gitignore - which files to push and which file to ignore
+package-lock.json - stable version of dependencies are locked(ex.will run on only this version)
+manifest contains meta tags for mobile view
+robots.txt for search engine
+
+manifest.json provides metadata used when your web app is installed on a user's mobile device or desktop.
+See https://developers.google.com/web/fundamentals/web-app-manifest/
+
+<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+Notice the use of %PUBLIC_URL% in the tags above.
+It will be replaced with the URL of the `public` folder during the build.
+Only files inside the `public` folder can be referenced from the HTML.
+
+Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+work correctly both with client-side routing and a non-root public URL.
+Learn how to configure a non-root public URL by running `npm run build`.
+
+react is core foundational library
+reactDOM is its implementation for browser
+react native is its implementation for mobile devices
+
+react creates its own DOM called virtual DOM
+the difference between  normal and virtual DOM is applied on the webpage using diffing algorithm
+
+createRoot is a method of reactDOM which takes HTML element as argument
+
+HTML rendering is the process of converting HTML code into visual elements for a web page. A rendering engine, also known as a browser engine, is the software that performs this process. The rendering engine receives HTML code from a server, processes it, and displays it on the screen. 
+
+strictmode is used for development purpose
+
+react-scripts in package.json is responsible for connecting html and JS without script tag(injects js in html)
+
+in jsx we can return only one element,so we can enclose all tags inside a div,hence fragment introduced <></>
+
+function/component name should always start from capital letter
+
+Now new algorithm - fiber is used behind virtual dom in react 
+
+1.The createRoot create's its own DOM and then compare it with the web browser's DOM and only update those components which are actually updated.
+2.But the browser removes the whole DOM and then recrates the whole DOM with the updated values this is called reload.
+3. However virtual DOM tracks whole DOM like a tree like structure and updates only those values which were only changed.
+4. But some values depends on network call so if we update a value it might get update immediately via a network call.
+5. So we will have to update it again. To avoid this overhead we can drop the updation calls for the immediate value update.
+6. The current algo used by the React is called the React Fibre algo.
+7. The algo react uses to differentiate the web browser's tree and React's tree formed through create root is called reconciliation.
+8. Reconciliation is the algo behind what popularly known as the Virtual-DOM.
+9.In UI it is not necessary for every update to be applied immediately. 
+
+virtual dom - createroot creates a dom,compares its dom and main dom,only the difference is updated
+refresh - browser completely removes the existing dom and repaints it
+
+https://github.com/acdlite/react-fiber-architecture
+
+Reconciliation is the algorithm behind what is popularly understood as the "virtual DOM." 
+reconciliation - The algorithm React uses to diff one tree with another to determine which parts need to be changed.
+
+props make components reusable
+
+[[]] hidden scope value
+
+onclick expects you to pass a function so we dont write  () after onclick=”myFunction()”. Instead we use “onClick= {myFunction}-cannot send parameters or ()=>myfunction
+
+useCallback is a React Hook that lets you cache a function definition between re-renders.
+
+callback function gives you access to previous values
+
+useEffect is a React Hook that lets you synchronize a component with an external system.
+
+useRef is a React Hook that lets you reference a value that’s not needed for rendering.take reference of any element and manipulate it
+
+we usually write use before any hook
+
+mostly api call values are in the form of string
+
+useCurrencyInfo is a custom hook designed by us
+
+onChange: This is a property/event handler typically associated with form input elements (such as <input>, <select>, <textarea>, etc.) in web development. It specifies a function to be called when the value of the input changes.
+
+{(e)=>onAmountChange && onAmountChange(Number(e.target.value))}: This is the function that will be executed when the onChange event occurs. It's an arrow function that takes an event (e) as its argument. Inside the function, it calls another function onAmountChange and passes the parsed number value of the input field (e.target.value) as its argument.
+
+Number(e.target.value): This converts the value of the input field (which is typically a string) into a numeric value. This assumes that the input field contains a valid numeric value.
+
+onAmountChange && onAmountChange(...): This is a conditional check before calling the onAmountChange function. It ensures that onAmountChange is defined before attempting to call it. This prevents errors in cases where onAmountChange might not be defined.\
+
+include keys in loops in react  so that react can identify which items have changed.
+useId is a React Hook for generating unique IDs that can be passed to accessibility attributes.
+
+passing anything makes it true 
+
+React router dom is third party library
+
+prop drilling
+context api
+redux(standalone library) - state management in organized way
+zustand
+react-redux (redux for react)
+redux-toolkit(rtk) is easier version of Redux
+useContext is a React Hook that lets you read and subscribe to context from your component.
+
+link is used instead of a tag as for <a/> tag the page refresh completely
+Navlink provides additional links
+
+context is a variable provider
+<UserContext>
+    <Login/>
+    <Card>
+        <Data/>
+    <Card/>
+<UserContext/>
+now this will be a provider
+all components inside this will get access of global user context/states
+UserContext creates global variable where all data get stores
+Login,profile,cart contexts
+In React, "context" refers to a feature that allows you to pass data through the component tree 
+without having to pass props down manually at every level.
+
+context has context provider
+
+react and reactDOM are two different libraries
+redux is independent state management library
+flux came before context api
+redux has strong dataflow
+change in state through reducers
+store is a single source of truth(like global variable)
+reducers help to change in stores
+reducers contains properties and functions
+
+disptch add value to store using reducer
+feature=slice
+state contains updated state value in the store
+state is preserved in rtk
+
+appwrite is complete backend as a service
+
+npm i @reduxjs/toolkit react-redux react-router-dom appwrite @tinymce/tinymce-react html-react-parser react-hook-form
+
+environment variables should be inside project's root
+never ship environment variable in git,so add to gitignore
+
+environment variable file is defined in process
+env name must always start with REACT_APP when the application is created using create react app and access it by process.env.filename
+import.meta.env.VITE_ for any vite app
+
+vendor lockin
+services
+
+instead of exporting class we can export object of that class
+
+postman plugin/extension
+
+tanstack query
+
+use ; before iife
+
+AbortController()  // avoids race condition get data in sequence fifo
+debounce cancels old request
